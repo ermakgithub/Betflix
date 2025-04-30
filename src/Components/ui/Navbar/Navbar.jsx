@@ -40,9 +40,9 @@ export default function Navbar() {
         <Slide appear={false} direction="down" in={!trigger}>
 
 
-        <AppBar >
+        <AppBar sx={{backgroundColor: '#383737'}} >
             <Container maxWidth="lg">
-            <Toolbar>
+            <Toolbar >
                 <IconButton color="inherit" onClick ={handleDrawerToggle} >
                     <MenuIcon />
                 </IconButton>
@@ -51,10 +51,10 @@ export default function Navbar() {
                     onClose={handleDrawerToggle}>
                     <Box sx={{width:250}} onClick={handleDrawerToggle}>
 
-                <List >
+                <List  >
                     {TOP_LISTS.map(item=>(
                         <Link key={item.title} component={RouterLink} to={item.url}>
-                        <ListItem disablePadding>
+                        <ListItem disablePadding sx={{color:"black", textDecoration:' underline black'}}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <Icon iconName={item.icon}/>
@@ -69,7 +69,7 @@ export default function Navbar() {
                 <List>
                     {MOVIE_LISTS.map((item)=>(
                         <Link key={item.title} component={RouterLink} to={item.url}>
-                            <ListItem disablePadding>
+                            <ListItem disablePadding sx={{color:"black", textDecoration:' underline black'}}>
                                 <ListItemButton>
                                     <ListItemIcon>
                                         <Icon iconName={item.icon}/>
@@ -82,7 +82,7 @@ export default function Navbar() {
                 </List>
                     </Box>
                 </Drawer>
-                <Typography sx ={{color:'white', textDecoration: 'none', variant: "h3"}} component={RouterLink} to="/">
+                <Typography sx ={{color:'white', textDecoration: 'none', variant: "h3", fontSize:30}} component={RouterLink} to="/">
                     Betflix
                 </Typography>
             </Toolbar>
