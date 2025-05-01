@@ -33,47 +33,57 @@ export const TOP_LISTS = [
     {
         title:'TOP 100 The best movies',
         icon:'AutoAwesome',
-        url: '/popular'
+        url: '/popular',
+        value:'TOP_POPULAR_MOVIES'
     },
     {
         title:'TOP 250 The best movies',
         icon:'StarPurple500',
-        url:'/best'
+        url:'/best',
+        value:'TOP_250_MOVIES'
     },
     {
         title:'Vampires',
         icon:'Bloodtype',
-        url:'/vampire'
+        url:'/vampire',
+        value:'VAMPIRE_THEME'
     },
     {
         title:'Comics',
         icon:'MenuBook',
-        url:'/comics'
+        url:'/comics',
+        value:'COMICS_THEME'
     },
     {
         title:'Family',
         icon:'FamilyRestroom',
-        url:'/family'
+        url:'/family',
+        value: 'FAMILY'
     },
     {
         title:'Romance',
         icon:'VolunteerActivism',
-        url:'/romantic'
+        url:'/romantic',
+        value:'LOVE_THEME'
+
     },
     {
         title:'Zombie',
         icon:'MoodBad',
-        url:'/zombie'
+        url:'/zombie',
+        value:'ZOMBIE_THEME'
     },
     {
         title:'Disasters',
         icon:'Pool',
-        url:'/catastrophe'
+        url:'/catastrophe',
+        value: 'CATASTROPHE_THEME',
     },
     {
         title:'Best Serials',
         icon:'LiveTv',
-        url: '/popular-serials'
+        url: '/popular-serials',
+        value:'POPULAR_SERIES'
     }
 ];
 
