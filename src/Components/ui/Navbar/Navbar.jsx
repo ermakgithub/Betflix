@@ -37,58 +37,83 @@ export default function Navbar() {
     };
 
     return (
-        <Slide appear={false} direction="down" in={!trigger}>
+      <Slide appear={false} direction="down" in={!trigger}>
+        <AppBar sx={{ backgroundColor: '#fff' }}>
+          <Container maxWidth="lg">
+            <Toolbar>
+              <IconButton color="black" onClick={handleDrawerToggle}>
+                <MenuIcon />
+              </IconButton>
+              <Drawer open={isOpen} onClose={handleDrawerToggle}>
+                <Box sx={{ width: 250 }} onClick={handleDrawerToggle}>
+                  <List   >
+                    {TOP_LISTS.map(item => (
+                      <Link
+                        key={item.title}
+                        component={RouterLink}
+                        to={item.url}
+                      >
+                        <ListItem
+                          disablePadding
+                          sx={{
+                            color: 'black',
+                            textDecoration: ' underline black',
 
-
-        <AppBar sx={{backgroundColor: '#383737'}} >
-            <Container maxWidth="lg">
-            <Toolbar >
-                <IconButton color="inherit" onClick ={handleDrawerToggle} >
-                    <MenuIcon />
-                </IconButton>
-                <Drawer
-                    open={isOpen}
-                    onClose={handleDrawerToggle}>
-                    <Box sx={{width:250}} onClick={handleDrawerToggle}>
-
-                <List  >
-                    {TOP_LISTS.map(item=>(
-                        <Link key={item.title} component={RouterLink} to={item.url}>
-                        <ListItem disablePadding sx={{color:"black", textDecoration:' underline black'}}>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <Icon iconName={item.icon}/>
-                                </ListItemIcon>
-                                <ListItemText primary={item.title} />
-                            </ListItemButton>
+                          }}
+                        >
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <Icon iconName={item.icon} />
+                            </ListItemIcon>
+                            <ListItemText primary={item.title} />
+                          </ListItemButton>
                         </ListItem>
-                        </Link>
+                      </Link>
                     ))}
-                </List>
-                        <Divider/>
-                <List>
-                    {MOVIE_LISTS.map((item)=>(
-                        <Link key={item.title} component={RouterLink} to={item.url}>
-                            <ListItem disablePadding sx={{color:"black", textDecoration:' underline black'}}>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <Icon iconName={item.icon}/>
-                                    </ListItemIcon>
-                                    <ListItemText primary={item.title} />
-                                </ListItemButton>
-                            </ListItem>
-                        </Link>
+                  </List>
+                  <Divider />
+                  <List>
+                    {MOVIE_LISTS.map(item => (
+                      <Link
+                        key={item.title}
+                        component={RouterLink}
+                        to={item.url}
+                      >
+                        <ListItem
+                          disablePadding
+                          sx={{
+                            color: 'black',
+                            textDecoration: ' underline black',
+                          }}
+                        >
+                          <ListItemButton>
+                            <ListItemIcon>
+                              <Icon iconName={item.icon} />
+                            </ListItemIcon>
+                            <ListItemText primary={item.title} />
+                          </ListItemButton>
+                        </ListItem>
+                      </Link>
                     ))}
-                </List>
-                    </Box>
-                </Drawer>
-                <Typography sx ={{color:'white', textDecoration: 'none', variant: "h3", fontSize:30}} component={RouterLink} to="/">
-                    Betflix
-                </Typography>
+                  </List>
+                </Box>
+              </Drawer>
+              <Typography
+                sx={{
+                  color: '#000000',
+                  textDecoration: 'none',
+                  variant: 'h3',
+                  fontSize: 30,
+                }}
+                component={RouterLink}
+                to="/"
+              >
+                Betflix
+              </Typography>
             </Toolbar>
-            </Container>
+          </Container>
         </AppBar>
-        </Slide>
+      </Slide>
     );
 }
 

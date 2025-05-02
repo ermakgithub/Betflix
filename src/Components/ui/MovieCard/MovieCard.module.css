@@ -1,7 +1,11 @@
-.img{
+.img {
     width: 215px;
-    transition: transform 0.5s;
+    transition: transform 0.5s ease 0.1s, opacity 0.5s ease 0.1s, border-radius 0.9s ease 0.1s;
+    border-radius: 4px;
 }
-.img:hover{
+
+.img:hover {
+    opacity: 0.7;
     transform: scale(1.05);
+    border-radius: 10px;
 }

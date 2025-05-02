@@ -1,41 +1,63 @@
-import React, {useState} from 'react';
-import {useGetFilmsTopQuery} from "../../../services/kinopoiskApi.js";
-import {TOP_LISTS} from "../../../constant.js"
-import {useLocation, useNavigate} from "react-router-dom";
-import {Button, Stack, Typography} from "@mui/material";
-import MoviesList from "../../ui/MoviesList/MoviesList.jsx";
-import {ArrowBack} from "@mui/icons-material";
+import React, { useEffect, useState } from 'react';
+import { useGetFilmsTopQuery } from '../../../services/kinopoiskApi.js';
+import { TOP_LISTS } from '../../../constant.js';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Box, Button, Stack, Typography } from '@mui/material';
+import MoviesList from '../../ui/MoviesList/MoviesList.jsx';
+import { ArrowBack } from '@mui/icons-material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function MoviesListTop() {
-    const location = useLocation();
-    const [page, setPage]= useState(1);
-    const navigate = useNavigate();
+  const location = useLocation();
+  const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
-    const movieType = TOP_LISTS.find(el =>el.url === location.pathname)
+  const movieType = TOP_LISTS.find(el => el.url === location.pathname);
 
-    const {data, error, isLoading} = useGetFilmsTopQuery({
-        type: movieType.value,
-        page: 1
-    });
+  const { data, error, isLoading } = useGetFilmsTopQuery({
+    type: movieType.value,
+    page,
+  });
 
-    if (error) return <p>Some error</p>;
+  useEffect(() =>{
+   setPage(1)
+  },[location])
 
-    if(isLoading) return <p>Loading...</p>;
 
+  if (error) return <p>Some error</p>;
+
+  if (isLoading)
     return (
-        <>
-            <Stack flexDirection="row" sx={{mt:2, mb:2}}>
-                <Button startIcon={<ArrowBack/>} onClick={()=> navigate(-1)}/>
-                <Typography variant="h4" >{movieType.title}</Typography>
-            </Stack>
-            <MoviesList
-                movies={data.items}
-                totalPages={data.totalPages}
-                page={page}
-                setPage={setPage}
-            />
-
-        </>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'left',
+          marginTop: '1.5rem',
+        }}
+      >
+        <Typography>Loading...</Typography>
+        <CircularProgress color="black" />
+      </Box>
     );
-}
 
+  return (
+    <>
+      <Stack flexDirection="row" sx={{ mt: 2, mb: 2 }}>
+        <Button
+          color="black"
+          startIcon={<ArrowBack />}
+          onClick={() => navigate(-1)}
+        />
+        <Typography variant="h4">{movieType.title}</Typography>
+      </Stack>
+
+      <MoviesList
+        movies={data.items}
+        totalPages={data.totalPages}
+        page={page}
+        setPage={setPage}
+      />
+    </>
+  );
+}

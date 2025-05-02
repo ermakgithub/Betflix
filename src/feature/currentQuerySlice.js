@@ -1,23 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    countries:'',
-    genreId:'',
-    order:'NUM_VOTE',
-    type:'',
-    year:'',
-    page:1,
-}
+  countries: '',
+  genreId: '',
+  order: 'NUM_VOTE',
+  type: '',
+  year: '',
+  page: 1,
+};
 
 export const currentQuerySlice = createSlice({
-    name: 'currentQuerySlice',
-    initialState,
-    reducers: {
-        // TODO add actions
-    },
-
+  name: 'currentQuerySlice',
+  initialState,
+  reducers: {
+    // TODO add actions
+  },
 });
 
-
-
-export default currentQuerySlice.reducer
+export default currentQuerySlice.reducer;
