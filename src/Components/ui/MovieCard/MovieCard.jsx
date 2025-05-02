@@ -11,6 +11,7 @@ export default function MovieCard({ movie }) {
           src={movie.posterUrlPreview}
           alt={movie.nameRu}
           className={styles.img}
+          height="280px"
         />
       </RouterLink>
 
@@ -18,7 +19,15 @@ export default function MovieCard({ movie }) {
         component={RouterLink}
         to={`/movie/${movie.kinopoiskId}`}
         textAlign="center"
-        sx={{ width: '200px' }}
+        sx={{
+          width: '220px',
+          display: '-webkit-box',
+          WebkitLineClamp: 1,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          
+
+        }}
         color="#000000"
       >
         {movie.nameEn ? movie.nameEn : movie.nameRu}

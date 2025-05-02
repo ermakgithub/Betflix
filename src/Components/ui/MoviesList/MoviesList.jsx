@@ -11,6 +11,7 @@ export default function MoviesList({ movies, totalPages, page, setPage }) {
         justifyContent="space-between"
         flexWrap="wrap"
         alignItems="center"
+        top="2rem"
       >
         {movies.map(movie => (
           <MovieCard key={movie.kinopoiskId} movie={movie} />
@@ -20,7 +21,6 @@ export default function MoviesList({ movies, totalPages, page, setPage }) {
       <Stack spacing={2} alignItems="center" sx={{ my: 4 }}>
         <Pagination
           count={totalPages}
-          variant="outlined"
           shape="circular"
           size="large"
           page={page}
