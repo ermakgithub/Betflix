@@ -4,6 +4,8 @@ import { Box, Stack, Typography,Link } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import BearCarousel, { BearSlideImage } from 'bear-react-carousel';
 import {Link as RouterLink} from 'react-router-dom';
+import ErrorMessage from '../../ui/ErrorMessage';
+import MoviesSkeleton from './MoviesSkeleton.jsx';
 
 export default function Movies() {
   const {
@@ -27,13 +29,16 @@ export default function Movies() {
           marginTop: '1.5rem',
         }}
       >
-        <Typography>Loading...</Typography>
+        <MoviesSkeleton/>
+
         <CircularProgress color="black" />
       </Box>
+
+
     );
 
   // TODO add error component
-  if (hasError) return <p>Error message</p>;
+  if (hasError) return <ErrorMessage  />;
 
   const serializeDataForCarousel = data =>
     data.map(row => (

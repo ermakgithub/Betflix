@@ -6,6 +6,7 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 import MoviesList from '../../ui/MoviesList/MoviesList.jsx';
 import { ArrowBack } from '@mui/icons-material';
 import CircularProgress from '@mui/material/CircularProgress';
+import ErrorMessage from '../../ui/ErrorMessage/index.js';
 
 export default function MoviesListTop() {
   const location = useLocation();
@@ -24,7 +25,7 @@ export default function MoviesListTop() {
   },[location])
 
 
-  if (error) return <p>Some error</p>;
+  if (error) return <ErrorMessage  />;
 
   if (isLoading)
     return (
