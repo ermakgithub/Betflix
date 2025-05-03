@@ -52,12 +52,13 @@ export default function Navbar() {
                         key={item.title}
                         component={RouterLink}
                         to={item.url}
+                        sx={{ textDecoration: 'none' }}
                       >
                         <ListItem
                           disablePadding
                           sx={{
                             color: 'black',
-                            textDecoration: ' underline black',
+
 
                           }}
                         >
@@ -78,12 +79,13 @@ export default function Navbar() {
                         key={item.title}
                         component={RouterLink}
                         to={item.url}
+                        sx={{ textDecoration: 'none' }}
                       >
                         <ListItem
                           disablePadding
                           sx={{
                             color: 'black',
-                            textDecoration: ' underline black',
+
                           }}
                         >
                           <ListItemButton>

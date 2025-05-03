@@ -5,32 +5,40 @@ import styles from './MovieCard.module.css';
 
 export default function MovieCard({ movie }) {
   return (
-    <Stack sx={{ textDecoration: ' underline black' }}>
-      <RouterLink to={`/movie/${movie.kinopoiskId}`}>
+    <Stack sx={{ textDecoration: 'none' }} spacing={1}>
+      <Link
+        component={RouterLink}
+        to={`/movie/${movie.kinopoiskId}`}
+        underline="none"
+
+      >
         <img
           src={movie.posterUrlPreview}
-          alt={movie.nameRu}
+          alt={movie.nameRu || movie.nameEn}
           className={styles.img}
           height="280px"
+          style={{ display: 'block' }}
         />
-      </RouterLink>
+      </Link>
 
       <Link
         component={RouterLink}
         to={`/movie/${movie.kinopoiskId}`}
-        textAlign="center"
         sx={{
+
           width: '220px',
           display: '-webkit-box',
           WebkitLineClamp: 1,
           WebkitBoxOrient: 'vertical',
           overflow: 'hidden',
-          
-
+          textDecoration: 'none',
+          color: '#000000',
+          '&:hover': {
+            textDecoration: 'underline'
+          }
         }}
-        color="#000000"
       >
-        {movie.nameEn ? movie.nameEn : movie.nameRu}
+        {movie.nameEn || movie.nameRu}
       </Link>
 
       {movie.ratingKinopoisk && (

@@ -71,22 +71,23 @@ export default function Movies() {
   return (
     <>
       {carouselArr.map(carousel => (
-        <Stack  key={carousel.title}>
-          <Link sx={{mt:2,mb:2}} variant="h4" component={<RouterLink/>} to={carousel.url}>{carousel.title}</Link>
+        <Stack  key={carousel.title} >
+          <Link sx={{mt:2,mb:2, textDecoration:'none' }} textAlign="center" color="#000000" variant="h4" component={RouterLink} to={carousel.url}>{carousel.title}</Link>
           <BearCarousel
+
             data={carousel.data}
             slidesPerView={1}
             slidesPerGroup={1}
             isEnableNavButton
             isEnableAutoPlay
-            autoPlayTime={3000}
+            autoPlayTime={3500}
             isEnableLoop
             breakpoints={{
               375:{
                 autoPlayTime:0,
               },
               768:{
-                slidesPerView:5,
+                slidesPerView:7,
               },
             }}
           />

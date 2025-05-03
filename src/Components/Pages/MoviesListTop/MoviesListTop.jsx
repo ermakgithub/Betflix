@@ -45,7 +45,7 @@ export default function MoviesListTop() {
     <>
       <Stack flexDirection="row" sx={{ mt: 2, mb: 2 }}>
         <Button
-          color="black"
+          color="#000000"
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
         />

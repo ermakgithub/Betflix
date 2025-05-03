@@ -24,9 +24,8 @@ export const kinopoiskApi = createApi({
         order = 'NUM_VOTE',
         type = 'FILM',
         year,
-        page,
-      }) =>
-        `/v2.2/films/countries/${countries}&genreId=${genreId}&order=${order}&type=${type}&year=${year}&page=${page}`,
+        page
+      }) => `/v2.2/films?countries=${countries}&genres=${genreId}&order=${order}&type=${type}&year=${year}&page=${page}`,
     }),
   }),
 });
