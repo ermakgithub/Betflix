@@ -1,6 +1,6 @@
 import React from 'react';
 import useMoviesQuery from '../../../hooks/useMoviesQuery.jsx';
-import { Box, Stack, Typography,Link } from '@mui/material';
+import { Box, Stack, Link } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import BearCarousel, { BearSlideImage } from 'bear-react-carousel';
 import {Link as RouterLink} from 'react-router-dom';
