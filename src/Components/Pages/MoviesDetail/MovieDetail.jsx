@@ -5,10 +5,10 @@ import {
   useGetSequelsAndPrequelsQuery,
   useGetStaffQuery,
 } from '../../../services/kinopoiskApi.js';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, ButtonGroup, Grid, Typography } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import ErrorMessage from '../../ui/ErrorMessage/index.js';
-import { ArrowBack } from '@mui/icons-material';
+import { ArrowBack, Language, Movie } from '@mui/icons-material';
 
 export default function MovieDetail() {
   const { id } = useParams();
@@ -45,7 +45,8 @@ export default function MovieDetail() {
   }
 
   return (
-    <Grid container spacing={2}>
+    <>
+    <Grid container spacing={2} mt={2}>
       <Grid size={4}>
         <img
           src={responseFilm.data.posterUrl}
@@ -53,8 +54,9 @@ export default function MovieDetail() {
           width="100%"
         />
       </Grid>
+
       <Grid size={6}>
-        <Grid container >
+        <Grid container>
           <Grid size={2}>
             <Button
               startIcon={<ArrowBack />}
@@ -67,46 +69,100 @@ export default function MovieDetail() {
           </Grid>
         </Grid>
 
-
-        <Grid container >
+        <Grid container>
           <Grid size={6}>
-            <Typography>Year</Typography>
+            <Typography>Год</Typography>
           </Grid>
           <Grid size={6}>
             <Typography gutterBottom>{responseFilm.data.year}</Typography>
           </Grid>
 
           <Grid size={6}>
-            <Typography>Country</Typography>
+            <Typography>Страна</Typography>
           </Grid>
           <Grid size={6}>
-            {responseFilm.data.countries.map(({country}) =>(
-              <Typography key={country} gutterBottom>{country}</Typography>
+            {responseFilm.data.countries.map(({ country }) => (
+              <Typography key={country} gutterBottom>
+                {country}
+              </Typography>
             ))}
           </Grid>
 
           <Grid size={6}>
-            <Typography>Genre</Typography>
+            <Typography>Жанр</Typography>
           </Grid>
           <Grid size={6}>
-            {responseFilm.data.genres.map(({genre}) =>(
-              <Typography key={genre} gutterBottom>{genre}</Typography>
+            {responseFilm.data.genres.map(({ genre }) => (
+              <Typography key={genre} gutterBottom>
+                {genre}
+              </Typography>
             ))}
           </Grid>
 
           <Grid size={6}>
-            <Typography>The directors</Typography>
+            <Typography>Режиссёры</Typography>
           </Grid>
           <Grid size={6}>
-            {responseStaff.data.genres.map(({genre}) =>(
-              <Typography key={genre} gutterBottom>{genre}</Typography>
-            ))}
+            {responseStaff.data
+              .filter(el => el.professionText === 'Режиссеры')
+              .map(({ nameRu }) => (
+                <Typography key={nameRu} gutterBottom>
+                  {nameRu}
+                </Typography>
+              ))}
+          </Grid>
+
+          <Grid size={6}>
+            <Typography>Время </Typography>
+          </Grid>
+          <Grid size={6}>
+            <Typography gutterBottom>
+              {responseFilm.data.filmLength} мин
+            </Typography>
+          </Grid>
+
+          <Grid size={12}>
+            <Typography>Описание </Typography>
+          </Grid>
+          <Grid size={12}>
+            <Typography gutterBottom>
+              {responseFilm.data.description
+                ? responseFilm.data.description
+                : 'Описание отсутствует'}
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
 
-
-      <Grid size={2}>Actors</Grid>
+      <Grid size={2}>
+        <Typography variant="h6">В главных ролях</Typography>
+        {responseStaff.data.filter(el => el.professionText === 'Актеры')
+          .slice(0, 10)
+          .map(
+            ({ nameRu }) => <Typography key={nameRu} gutterBottom>{nameRu}</Typography>,
+          )}
+      </Grid>
     </Grid>
-  );
+
+  <Grid container spacing={2} display="flex" justifyContent="center" alignItems="center" flexDirection="column" >
+    <Grid size={12}>
+      <ButtonGroup variant="contained" size="small">
+        <Button target="_blank"
+                href={responseFilm.data.webUrl}
+                endIcon={<Language />}
+
+        >
+          Кинопоиск
+        </Button>
+        <Button target="_blank"
+                href={`https://www.imdb.com/title/${responseFilm.data.imdbId}`}
+                endIcon={<Movie />}>
+          IMDB
+        </Button>
+      </ButtonGroup>
+    </Grid>
+  </Grid>
+    </>
+)
+  ;
 }
