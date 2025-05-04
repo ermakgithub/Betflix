@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const kinopoiskApiKey = import.meta.env.VITE_KINOPOISK_KEY;
-const excludeGenres=[
-  "",
+const excludeGenres = [
+  '',
   'новости',
   'церемония',
   'реальное ТВ',
   'ток-шоу',
-  'для взрослых'
-]
+  'для взрослых',
+];
 
 export const kinopoiskApi = createApi({
   reducerPath: 'kinopoiskApi',
@@ -32,19 +32,42 @@ export const kinopoiskApi = createApi({
         order = 'NUM_VOTE',
         type = 'FILM',
         year,
-        page
-      }) => `/v2.2/films?countries=${countries}&genres=${genreId}&order=${order}&type=${type}&yearFrom=${year}&yearTo=${year}&page=${page}`,
+        page,
+      }) =>
+        `/v2.2/films?countries=${countries}&genres=${genreId}&order=${order}&type=${type}&yearFrom=${year}&yearTo=${year}&page=${page}`,
     }),
 
     getGenresAndCountries: builder.query({
-      query:() => '/v2.2/films/filters',
-      transformResponse: response =>({
+      query: () => '/v2.2/films/filters',
+      transformResponse: response => ({
         ...response,
-        genres: response.genres.filter(({genre}) => !excludeGenres.includes(genre),
-          ),
+        genres: response.genres.filter(
+          ({ genre }) => !excludeGenres.includes(genre),
+        ),
       }),
     }),
+
+    getFilm: builder.query({
+      query: id => `/v2.2/films/${id}`,
+    }),
+
+    getSequelsAndPrequels: builder.query({
+      query: id => `/v2.2/films/${id}/sequels_and_prequels`,
+      transformResponse: response =>
+        response.map(el => ({ ...el, kinopoiskId: el.filmId })),
+    }),
+
+    getStaff:builder.query({
+      query: id=>`/v1/staff?filmId=${id}`,
+    })
   }),
 });
 
-export const { useGetFilmsTopQuery, useGetFilmsQuery, useGetGenresAndCountriesQuery } = kinopoiskApi;
+export const {
+  useGetFilmsTopQuery,
+  useGetFilmsQuery,
+  useGetGenresAndCountriesQuery,
+  useGetFilmQuery,
+  useGetSequelsAndPrequelsQuery,
+  useGetStaffQuery,
+} = kinopoiskApi;

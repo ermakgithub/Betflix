@@ -23,8 +23,8 @@ function SelectMovies({
   const dispatch = useDispatch();
 
   const ordersList = [
-    { title: 'By rating', value: 'RATING' },
-    { title: 'By tag', value: 'NUM_VOTE' },
+    { title: 'По рэйтингу', value: 'RATING' },
+    { title: 'По оценкам', value: 'NUM_VOTE' },
   ];
 
   const yearsList = new Array(60).fill(null).map((_, index) => ({

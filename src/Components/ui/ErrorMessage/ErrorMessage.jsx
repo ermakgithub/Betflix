@@ -8,7 +8,7 @@ function ErrorMessage() {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      marginTop="25px"
+      marginTop="20rem"
     >
       <Typography variant="h5">Аn error has occurred - refresh the page</Typography>
     </Box>

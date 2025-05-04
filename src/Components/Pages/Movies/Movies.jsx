@@ -3,7 +3,7 @@ import useMoviesQuery from '../../../hooks/useMoviesQuery.jsx';
 import { Box, Stack, Link } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import BearCarousel, { BearSlideImage } from 'bear-react-carousel';
-import {Link as RouterLink} from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import ErrorMessage from '../../ui/ErrorMessage';
 import MoviesSkeleton from './MoviesSkeleton.jsx';
 
@@ -29,20 +29,18 @@ export default function Movies() {
           marginTop: '1.5rem',
         }}
       >
-        <MoviesSkeleton/>
+        <MoviesSkeleton />
 
         <CircularProgress color="black" />
       </Box>
-
-
     );
 
   // TODO add error component
-  if (hasError) return <ErrorMessage  />;
+  if (hasError) return <ErrorMessage />;
 
   const serializeDataForCarousel = data =>
     data.map(row => (
-      <BearSlideImage key={row.id} imageUrl={row.posterUrlPreview} />
+      <BearSlideImage key={row.id} imageUrl={row.posterUrlPreview}  />
     ));
 
   const carouselArr = [
@@ -76,10 +74,18 @@ export default function Movies() {
   return (
     <>
       {carouselArr.map(carousel => (
-        <Stack  key={carousel.title} >
-          <Link sx={{mt:2,mb:2, textDecoration:'none' }} textAlign="center" color="#000000" variant="h4" component={RouterLink} to={carousel.url}>{carousel.title}</Link>
+        <Stack key={carousel.title}>
+          <Link
+            sx={{ mt: 2, mb: 2, textDecoration: 'none' }}
+            textAlign="center"
+            color="#000000"
+            variant="h4"
+            component={RouterLink}
+            to={carousel.url}
+          >
+            {carousel.title}
+          </Link>
           <BearCarousel
-
             data={carousel.data}
             slidesPerView={1}
             slidesPerGroup={1}
@@ -88,17 +94,16 @@ export default function Movies() {
             autoPlayTime={3500}
             isEnableLoop
             breakpoints={{
-              375:{
-                autoPlayTime:0,
+              375: {
+                autoPlayTime: 0,
               },
-              768:{
-                slidesPerView:7,
+              768: {
+                slidesPerView: 7,
               },
             }}
           />
         </Stack>
       ))}
-
     </>
   );
 }
