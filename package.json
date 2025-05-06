@@ -16,6 +16,7 @@
     "@mui/material": "^7.0.2",
     "@reduxjs/toolkit": "^2.7.0",
     "bear-react-carousel": "^5.2.1",
+    "classnames": "^2.5.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",

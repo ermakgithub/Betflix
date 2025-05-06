@@ -5,12 +5,20 @@ import {
   useGetSequelsAndPrequelsQuery,
   useGetStaffQuery,
 } from '../../../services/kinopoiskApi.js';
-import { Box, Button, ButtonGroup, Grid, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Grid,
+  Stack,
+  Typography,
+} from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import ErrorMessage from '../../ui/ErrorMessage/index.js';
 import { ArrowBack, Language, Movie } from '@mui/icons-material';
 import styles from './detail.module.css';
 import MovieCard from '../../ui/MovieCard/MovieCard.jsx';
+import VideoPlayer from '../../ui/VideoPlayer/index.js';
 
 export default function MovieDetail() {
   const { id } = useParams();
@@ -129,7 +137,7 @@ export default function MovieDetail() {
               <Typography>Описание </Typography>
             </Grid>
             <Grid size={12}>
-              <Typography gutterBottom>
+              <Typography gutterBottom className={styles.opistypograph}>
                 {responseFilm.data.description
                   ? responseFilm.data.description
                   : 'Описание отсутствует'}
@@ -178,20 +186,26 @@ export default function MovieDetail() {
           </ButtonGroup>
         </Grid>
         <Grid size={12}></Grid>
-          <Typography variant="h5" textAlign="center">
-            Смотреть онлайн
-          </Typography>
-          <video/>
+        <Typography variant="h5" textAlign="center">
+          Смотреть онлайн
+        </Typography>
+        <VideoPlayer />
       </Grid>
 
-      <Stack alignItems="center"  >
-        <Typography gutterBottom variant="h5" textAlign="center">Сиквелы и приквелы</Typography>
-        <Stack direction="row" spacing={5} >
+
+      {responseSequelsAndPrequels.data && (
+      <Stack alignItems="center">
+        <Typography gutterBottom variant="h5" textAlign="center">
+          Сиквелы и приквелы
+        </Typography>
+        <Stack direction="row" spacing={5}>
           {responseSequelsAndPrequels.data.map(el => (
-            <MovieCard key={el.id} movie={el} />
+            <MovieCard key={el.filmId} movie={el} reload />
           ))}
         </Stack>
       </Stack>
+      )}
+
     </>
   );
 }

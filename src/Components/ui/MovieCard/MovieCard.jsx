@@ -3,15 +3,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Box, Rating, Stack, Tooltip, Link } from '@mui/material';
 import styles from './MovieCard.module.css';
 
-export default function MovieCard({ movie }) {
+export default function MovieCard({ movie, reload = false }) {
+  const linkProps = reload
+    ? { component: 'a', href: `/movie/${movie.kinopoiskId}` }
+    : { component: RouterLink, to: `/movie/${movie.kinopoiskId}` };
   return (
     <Stack sx={{ textDecoration: 'none' }} spacing={1}>
-      <Link
-        component={RouterLink}
-        to={`/movie/${movie.kinopoiskId}`}
-        underline="none"
-
-      >
+      <Link {...linkProps} underline="none">
         <img
           src={movie.posterUrlPreview}
           alt={movie.nameRu || movie.nameEn}
@@ -19,26 +17,24 @@ export default function MovieCard({ movie }) {
           height="280px"
           style={{ display: 'block' }}
         />
-      </Link>
 
-      <Link
-        component={RouterLink}
-        to={`/movie/${movie.kinopoiskId}`}
-        sx={{
-
-          width: '220px',
-          display: '-webkit-box',
-          WebkitLineClamp: 1,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-          textDecoration: 'none',
-          color: '#000000',
-          '&:hover': {
-            textDecoration: 'underline'
-          }
-        }}
-      >
-        {movie.nameEn || movie.nameRu}
+        <Link
+          component="p"
+          sx={{
+            width: '220px',
+            display: '-webkit-box',
+            WebkitLineClamp: 1,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textDecoration: 'none',
+            color: '#000000',
+            '&:hover': {
+              textDecoration: 'underline',
+            },
+          }}
+        >
+          {movie.nameEn || movie.nameRu}
+        </Link>
       </Link>
 
       {movie.ratingKinopoisk && (
