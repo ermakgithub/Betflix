@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 function UseMoviesQuery() {
 
-  const { countries, order,   year, page } = useSelector(state => state.currentQuery);
+  const { countries, order,   year, page } = useSelector(state => state.currentQuerySlice);
 
   const responsePopular = useGetFilmsTopQuery({
     type: TOP_LISTS[0].value,
@@ -24,6 +24,7 @@ function UseMoviesQuery() {
     order,
     year,
     page,
+
 
   });
 

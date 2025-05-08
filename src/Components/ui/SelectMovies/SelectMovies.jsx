@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch } from 'react-redux';
-import { resetQuery, selectQuery } from '../../../feature/currentQuerySlice.js';
+import { resetQuery, selectQuery } from '../../../features/currentQuerySlice.js';
 
 function SelectMovies({
   countriesList,

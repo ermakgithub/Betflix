@@ -1,54 +1,84 @@
-import React , {useState, useEffect} from 'react';
-import { Autocomplete, TextField } from '@mui/material';
-import { useGetFilmsQuery } from '../../../services/kinopoiskApi.js';
+import { Autocomplete, CircularProgress, TextField } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchQuery } from '../../../feature/searchQuerySlice.js';
+import { useNavigate } from 'react-router-dom';
 
-const movieTypes={
-  FILM: "Фильм",
-  TV_SERIES:"Сериал",
-  TV_SHOW:"ТВ шоу",
-  MINI_SERIES:"Мини-сериал"
-}
+import { setSearchQuery } from '../../../features/searchQuerySlice';
+import { useGetFilmsQuery } from '../../../services/kinopoiskApi';
 
+const movieTypes = {
+  FILM: 'Фильм',
+  TV_SERIES: 'Сериал',
+  TV_SHOW: 'ТВ-Шоу',
+  MINI_SERIES: 'Мини-сериал',
+};
 
-function Search() {
-  const [input, setInput] =  useState('');
+export default function Search() {
+  const [input, setInput] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { countries, genreId, order, type, year, page, keyword } = useSelector(
     state => state.searchQuerySlice,
   );
 
-  useEffect(() =>{
+  useEffect(() => {
     const setTimeoutId = setTimeout(() => {
       dispatch(setSearchQuery({ keyword: input }));
     }, 500);
 
-      return()=> clearTimeout(setTimeoutId);
+    return () => clearTimeout(setTimeoutId);
   }, [input]);
 
-  const { data, isLoading } = useGetFilmsQuery({
+  const { data, isFetching } = useGetFilmsQuery({
     countries,
     genreId,
     order,
     type,
-    page,
     year,
+    page,
     keyword,
   });
 
   return (
     <Autocomplete
       freeSolo
-      sx={{ width: 300 }}
-      options={data ? data.items.map(option => `${option.nameRu}-${movieTypes[option.type]} -${option.year}`) : []}
-      onInputChange={(_,value)=>{
-          setInput(value);
+      sx={{
+        width: 300,
+        backgroundColor: 'rgba(255,255,255, 0.15)',
+        '& .MuiOutlinedInput-root': {
+          '& fieldset': {
+            border: 'none',
+          },
+        },
       }}
-      renderInput={params => <TextField {...params} label="freeSolo" />}
+      getOptionLabel={option =>
+        `${option.nameRu} - ${movieTypes[option.type]} - ${option.year}`
+      }
+      options={data ? data.items : []}
+      onInputChange={(_, value) => {
+        setInput(value);
+      }}
+      onChange={(_, value) => {
+        navigate(`/movie/${value.kinopoiskId}`);
+      }}
+      renderInput={params => (
+        <TextField
+          {...params}
+          label="Поиск"
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <React.Fragment>
+                {isFetching ? (
+                  <CircularProgress size={20} color="inherit" />
+                ) : null}
+                {params.InputProps.endAdornment}
+              </React.Fragment>
+            ),
+          }}
+        />
+      )}
     />
   );
 }
-
-export default Search;

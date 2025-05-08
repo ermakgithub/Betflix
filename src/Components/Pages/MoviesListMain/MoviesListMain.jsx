@@ -17,7 +17,7 @@ import SelectMovies from '../../ui/SelectMovies/index.js';
 export default function MoviesListMain() {
   const location = useLocation();
   const { countries, order, year, genreId } = useSelector(
-    state => state.currentQuery,
+    state => state.currentQuerySlice,
   );
   const [page, setPage] = useState(1);
   const navigate = useNavigate();

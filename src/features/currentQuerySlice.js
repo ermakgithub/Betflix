@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  countries:'',
+  countries: '',
   genreId: '',
   order: 'NUM_VOTE',
   type: '',
@@ -13,16 +13,16 @@ export const currentQuerySlice = createSlice({
   name: 'currentQuerySlice',
   initialState,
   reducers: {
-    selectQuery:(state, action)=>({
+    selectQuery: (state, action) => ({
       ...state,
       ...action.payload,
     }),
-    resetQuery:() =>({
+    resetQuery: () => ({
       ...initialState,
-    })
+    }),
   },
 });
 
-export const {selectQuery, resetQuery} = currentQuerySlice.actions;
+export const { selectQuery, resetQuery } = currentQuerySlice.actions;
 
 export default currentQuerySlice.reducer;

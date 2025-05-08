@@ -1,13 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const kinopoiskApiKey = import.meta.env.VITE_KINOPOISK_KEY;
+
 const excludeGenres = [
   '',
   'новости',
+  'для взрослых',
   'церемония',
   'реальное ТВ',
   'ток-шоу',
-  'для взрослых',
 ];
 
 export const kinopoiskApi = createApi({
@@ -27,14 +28,14 @@ export const kinopoiskApi = createApi({
 
     getFilms: builder.query({
       query: ({
-        countries,
-        genreId,
-        order = 'NUM_VOTE',
-        type = 'FILM',
-        year,
-        page,
-        keyword = '',
-      }) =>
+                countries,
+                genreId,
+                order = 'NUM_VOTE',
+                type = 'FILM',
+                year,
+                page,
+                keyword = '',
+              }) =>
         `/v2.2/films?countries=${countries}&genres=${genreId}&order=${order}&type=${type}&yearFrom=${year}&yearTo=${year}&page=${page}&keyword=${keyword}`,
     }),
 
@@ -58,9 +59,13 @@ export const kinopoiskApi = createApi({
         response.map(el => ({ ...el, kinopoiskId: el.filmId })),
     }),
 
-    getStaff:builder.query({
-      query: id=>`/v1/staff?filmId=${id}`,
-    })
+    getStaff: builder.query({
+      query: id => `/v1/staff?filmId=${id}`,
+    }),
+
+    getStaffById: builder.query({
+      query: id => `/v1/staff/${id}`,
+    }),
   }),
 });
 
@@ -71,4 +76,5 @@ export const {
   useGetFilmQuery,
   useGetSequelsAndPrequelsQuery,
   useGetStaffQuery,
+  useGetStaffByIdQuery,
 } = kinopoiskApi;

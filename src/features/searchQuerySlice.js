@@ -1,27 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  countries:'',
+  countries: '',
   genreId: '',
   order: 'NUM_VOTE',
   type: '',
   year: '',
   page: 1,
-  keyword:'',
+  keyword: '',
 };
 
 export const searchQuerySlice = createSlice({
   name: 'searchQuerySlice',
   initialState,
   reducers: {
-    setSearchQuery:(state, action)=>({
+    setSearchQuery: (state, action) => ({
       ...state,
       ...action.payload,
     }),
-
   },
 });
 
-export const {setSearchQuery} = searchQuerySlice.actions;
+export const { setSearchQuery } = searchQuerySlice.actions;
 
 export default searchQuerySlice.reducer;
