@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link as RouterLink } from 'react-router-dom';
 import {
   useGetFilmQuery,
   useGetSequelsAndPrequelsQuery,
@@ -10,6 +10,7 @@ import {
   Button,
   ButtonGroup,
   Grid,
+  Link,
   Stack,
   Typography,
 } from '@mui/material';
@@ -151,10 +152,17 @@ export default function MovieDetail() {
           {responseStaff.data
             .filter(el => el.professionText === 'Актеры')
             .slice(0, 10)
-            .map(({ nameRu }) => (
-              <Typography key={nameRu} gutterBottom>
+            .map(({ nameRu, staffId }) => (
+              <div key={nameRu}>
+              <Link
+                component={RouterLink}
+                to={`/actor/${staffId}`}
+
+                gutterBottom
+              >
                 {nameRu}
-              </Typography>
+              </Link>
+              </div>
             ))}
         </Grid>
       </Grid>
@@ -192,20 +200,18 @@ export default function MovieDetail() {
         <VideoPlayer />
       </Grid>
 
-
       {responseSequelsAndPrequels.data && (
-      <Stack alignItems="center">
-        <Typography gutterBottom variant="h5" textAlign="center">
-          Сиквелы и приквелы
-        </Typography>
-        <Stack direction="row" spacing={5}>
-          {responseSequelsAndPrequels.data.map(el => (
-            <MovieCard key={el.filmId} movie={el} reload />
-          ))}
+        <Stack alignItems="center">
+          <Typography gutterBottom variant="h5" textAlign="center">
+            Сиквелы и приквелы
+          </Typography>
+          <Stack direction="row" spacing={5}>
+            {responseSequelsAndPrequels.data.map(el => (
+              <MovieCard key={el.filmId} movie={el} reload />
+            ))}
+          </Stack>
         </Stack>
-      </Stack>
       )}
-
     </>
   );
 }

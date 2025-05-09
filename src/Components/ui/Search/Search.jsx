@@ -45,7 +45,7 @@ export default function Search() {
       freeSolo
       sx={{
         width: 300,
-        backgroundColor: 'rgba(255,255,255, 0.15)',
+        backgroundColor: 'gray',
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
             border: 'none',
@@ -71,7 +71,7 @@ export default function Search() {
             endAdornment: (
               <React.Fragment>
                 {isFetching ? (
-                  <CircularProgress size={20} color="inherit" />
+                  <CircularProgress size={20} color="black" />
                 ) : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>
