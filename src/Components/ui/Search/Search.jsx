@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { setSearchQuery } from '../../../features/searchQuerySlice';
 import { useGetFilmsQuery } from '../../../services/kinopoiskApi';
+import styles from './search.module.css';
 
 const movieTypes = {
   FILM: 'Фильм',
@@ -43,9 +44,10 @@ export default function Search() {
   return (
     <Autocomplete
       freeSolo
+      className={styles.search}
       sx={{
         width: 300,
-        backgroundColor: 'gray',
+        backgroundColor: '#00232A',
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
             border: 'none',
@@ -64,7 +66,9 @@ export default function Search() {
       }}
       renderInput={params => (
         <TextField
+
           {...params}
+          color="#FFFFFA"
           label="Поиск"
           InputProps={{
             ...params.InputProps,

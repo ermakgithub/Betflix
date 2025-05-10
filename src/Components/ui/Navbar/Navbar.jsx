@@ -41,26 +41,28 @@ export default function Navbar() {
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
-      <AppBar sx={{ backgroundColor: '#fff' }}>
-        <Container maxWidth="lg">
+      <AppBar sx={{ backgroundColor: '#730000' }}>
+        <Container  maxWidth="lg">
           <Toolbar>
-            <IconButton color="black" onClick={handleDrawerToggle}>
+            <IconButton color="#00232A" onClick={handleDrawerToggle}>
               <MenuIcon />
             </IconButton>
             <Drawer open={isOpen} onClose={handleDrawerToggle}>
-              <Box sx={{ width: 250 }} onClick={handleDrawerToggle}>
+              <Box sx={{ width: 250, backgroundColor: '#FF9B9B',height:'100%' }} onClick={handleDrawerToggle}>
                 <List>
                   {TOP_LISTS.map(item => (
                     <Link
                       key={item.title}
                       component={RouterLink}
                       to={item.url}
-                      sx={{ textDecoration: 'none' }}
+
+                      sx={{ textDecoration: 'none',color: '#00232A' }}
                     >
                       <ListItem
                         disablePadding
                         sx={{
-                          color: 'black',
+                          color: '#00232A',
+
                         }}
                       >
                         <ListItemButton>
@@ -85,7 +87,7 @@ export default function Navbar() {
                       <ListItem
                         disablePadding
                         sx={{
-                          color: 'black',
+                          color: '#00232A',
                         }}
                       >
                         <ListItemButton>
@@ -109,7 +111,7 @@ export default function Navbar() {
             >
               <Typography
                 sx={{
-                  color: '#000000',
+                  color: '#00232A',
                   textDecoration: 'none',
                   variant: 'h3',
                   fontSize: 30,

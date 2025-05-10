@@ -12,16 +12,17 @@ export default function Footer() {
                    alignItems:{sm:'center'},
                    marginTop:'auto',
 
+
         }}
         >
 
-                <Typography variant='body2' color="#000000">
+                <Typography variant='body2' color="#FF9B9B">
                     &copy; {new Date().getFullYear()} &laquo;betflix&raquo; 18+<br/>
                     Данный сайт создан исключительно в обучающих целях.<br/>
                     Все права принадлежат правообладателям.
                 </Typography>
 
-                <Typography variant="h4" color="#000000">
+                <Typography variant="h4" color="#FF9B9B">
                     betflix
                 </Typography>
 

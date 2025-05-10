@@ -35,7 +35,7 @@ export default function Movies() {
       </Box>
     );
 
-  // TODO add error component
+
   if (hasError) return <ErrorMessage />;
 
   const serializeDataForCarousel = data =>
@@ -78,7 +78,7 @@ export default function Movies() {
           <Link
             sx={{ mt: 2, mb: 2, textDecoration: 'none' }}
             textAlign="center"
-            color="#000000"
+            color="#730000"
             variant="h4"
             component={RouterLink}
             to={carousel.url}

@@ -27,7 +27,7 @@ export default function MovieCard({ movie, reload = false }) {
             WebkitBoxOrient: 'vertical',
             overflow: 'hidden',
             textDecoration: 'none',
-            color: '#000000',
+            color: '#730000',
             '&:hover': {
               textDecoration: 'underline',
             },

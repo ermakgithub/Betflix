@@ -10,9 +10,9 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
-
 import { useGetStaffByIdQuery } from '../../../services/kinopoiskApi';
 import ErrorMessage from '../../ui/ErrorMessage';
+import styles from './actor.module.css';
 
 export default function ActorDetail() {
   const { id } = useParams();
@@ -33,14 +33,14 @@ export default function ActorDetail() {
   return (
     <>
       <Grid container spacing={4} pt={2}>
-        <Grid item xs={12} md={4}>
+        <Grid item size={3} md={4}>
           <img
             src={data.posterUrl}
-            style={{ width: '100%' }}
             alt={data.nameRu}
+            className={styles.img}
           />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item size={9} md={8}>
           <Stack flexDirection="row">
             <Button
               startIcon={<ArrowBack />}
@@ -56,40 +56,40 @@ export default function ActorDetail() {
             Об актере
           </Typography>
           <Grid container>
-            <Grid xs={6}>
+            <Grid size={6}>
               <Typography gutterBottom>Карьера</Typography>
             </Grid>
-            <Grid xs={6}>
+            <Grid size={6}>
               <Typography gutterBottom>{data.profession}</Typography>
             </Grid>
 
-            <Grid xs={6}>
+            <Grid size={6}>
               <Typography gutterBottom>Рост</Typography>
             </Grid>
-            <Grid xs={6}>
+            <Grid size={6}>
               <Typography gutterBottom>{data.growth}</Typography>
             </Grid>
 
-            <Grid xs={6}>
+            <Grid size={6}>
               <Typography gutterBottom>Дата рождения</Typography>
             </Grid>
-            <Grid xs={6}>
+            <Grid size={6}>
               <Typography gutterBottom>
                 {data.birthday} ({data.age} лет)
               </Typography>
             </Grid>
 
-            <Grid xs={6}>
+            <Grid size={6}>
               <Typography gutterBottom>Всего фильмов</Typography>
             </Grid>
-            <Grid xs={6}>
+            <Grid size={6}>
               <Typography>{data.films.length}</Typography>
             </Grid>
 
-            <Grid xs={6}>
+            <Grid size={6}>
               <Typography gutterBottom>Факты</Typography>
             </Grid>
-            <Grid xs={12}>
+            <Grid size={12}>
               {data.facts.map((fact, index) => (
                 <Typography gutterBottom key={fact}>
                   {index + 1}.{fact}
@@ -98,7 +98,7 @@ export default function ActorDetail() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item size={12}>
           <Typography variant="h5">Фильмы</Typography>
         </Grid>
       </Grid>
