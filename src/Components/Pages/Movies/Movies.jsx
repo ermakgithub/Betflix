@@ -78,7 +78,7 @@ export default function Movies() {
           <Link
             sx={{ mt: 2, mb: 2, textDecoration: 'none' }}
             textAlign="center"
-            color="#730000"
+            color="#0F214D"
             variant="h4"
             component={RouterLink}
             to={carousel.url}

@@ -16,13 +16,13 @@ export default function Footer() {
         }}
         >
 
-                <Typography variant='body2' color="#FF9B9B">
+                <Typography variant='body2' color="#0F214D">
                     &copy; {new Date().getFullYear()} &laquo;betflix&raquo; 18+<br/>
                     Данный сайт создан исключительно в обучающих целях.<br/>
                     Все права принадлежат правообладателям.
                 </Typography>
 
-                <Typography variant="h4" color="#FF9B9B">
+                <Typography variant="h4" color="#0F214D">
                     betflix
                 </Typography>
 

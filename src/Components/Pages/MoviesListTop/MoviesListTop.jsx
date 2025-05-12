@@ -46,11 +46,11 @@ export default function MoviesListTop() {
     <>
       <Stack flexDirection="row" sx={{ mt: 2, mb: 2 }}>
         <Button
-          color="#730000"
+          color="#0F214D"
           startIcon={<ArrowBack />}
           onClick={() => navigate(-1)}
         />
-        <Typography variant="h4" color="#730000">{movieType.title}</Typography>
+        <Typography variant="h4" color="#0F214D">{movieType.title}</Typography>
       </Stack>
 
       <MoviesList

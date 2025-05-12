@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
 import {
   AppBar,
   Box,
@@ -22,6 +23,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link as RouterLink } from 'react-router-dom';
 import { iconComponents, MOVIE_LISTS, TOP_LISTS } from '../../../constant.js';
 import Search from '../Search';
+import toggleColorMode, { ColorModeContext } from '../../../context/ToggleColorMode.jsx';
+import { useTheme } from '@emotion/react';
 
 const Icon = ({ iconName }) => {
   const IconComponent = iconComponents[iconName];
@@ -29,6 +32,10 @@ const Icon = ({ iconName }) => {
 };
 
 export default function Navbar() {
+  const {toggleColorMode, mode} = useContext(ColorModeContext);
+
+
+
   const [isOpen, setOpen] = useState(false);
 
   const trigger = useScrollTrigger({
@@ -41,14 +48,14 @@ export default function Navbar() {
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
-      <AppBar sx={{ backgroundColor: '#730000' }}>
+      <AppBar sx={{ backgroundColor: '#0F214D' }}>
         <Container  maxWidth="lg">
           <Toolbar>
-            <IconButton color="#00232A" onClick={handleDrawerToggle}>
+            <IconButton sx={{color:'#AAF1FF'}} onClick={handleDrawerToggle}>
               <MenuIcon />
             </IconButton>
             <Drawer open={isOpen} onClose={handleDrawerToggle}>
-              <Box sx={{ width: 250, backgroundColor: '#FF9B9B',height:'100%' }} onClick={handleDrawerToggle}>
+              <Box sx={{ width: 250, backgroundColor: '#0F214D',height:'100%' }} onClick={handleDrawerToggle}>
                 <List>
                   {TOP_LISTS.map(item => (
                     <Link
@@ -56,12 +63,12 @@ export default function Navbar() {
                       component={RouterLink}
                       to={item.url}
 
-                      sx={{ textDecoration: 'none',color: '#00232A' }}
+                      sx={{ textDecoration: 'none',color: '#AAF1FF' }}
                     >
                       <ListItem
                         disablePadding
                         sx={{
-                          color: '#00232A',
+                          color: '#AAF1FF',
 
                         }}
                       >
@@ -87,7 +94,7 @@ export default function Navbar() {
                       <ListItem
                         disablePadding
                         sx={{
-                          color: '#00232A',
+                          color: '#AAF1FF',
                         }}
                       >
                         <ListItemButton>
@@ -111,7 +118,7 @@ export default function Navbar() {
             >
               <Typography
                 sx={{
-                  color: '#00232A',
+                  color: '#AAF1FF',
                   textDecoration: 'none',
                   variant: 'h3',
                   fontSize: 30,
@@ -122,6 +129,9 @@ export default function Navbar() {
                 Betflix
               </Typography>
               <Search />
+              <IconButton color="black" onClick={toggleColorMode}>
+                {mode === 'dark' ? <Brightness7/> : <Brightness4/>}
+               </IconButton>
             </Stack>
           </Toolbar>
         </Container>

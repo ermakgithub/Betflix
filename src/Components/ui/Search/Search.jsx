@@ -47,7 +47,7 @@ export default function Search() {
       className={styles.search}
       sx={{
         width: 300,
-        backgroundColor: '#00232A',
+        backgroundColor: '#AAF1FF',
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
             border: 'none',
