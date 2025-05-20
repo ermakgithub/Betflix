@@ -8,13 +8,15 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom';
 import { useGetStaffByIdQuery } from '../../../services/kinopoiskApi';
 import ErrorMessage from '../../ui/ErrorMessage';
 import styles from './actor.module.css';
 
+
 export default function ActorDetail() {
+  const [showAll, setShowAll] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -89,17 +91,27 @@ export default function ActorDetail() {
             <Grid size={6}>
               <Typography gutterBottom>Факты</Typography>
             </Grid>
-            <Grid size={12}>
-              {data.facts.map((fact, index) => (
-                <Typography gutterBottom key={fact}>
-                  {index + 1}.{fact}
-                </Typography>
-              ))}
+
+
+            <Grid item xs={12}>
+              {data.facts
+                .slice(0, showAll ? data.facts.length : 8) // Показываем все или первые 8
+                .map((fact, index) => (
+                  <Typography gutterBottom key={index}>
+                    {index + 1}. {fact}
+                  </Typography>
+                ))
+              }
+              {data.facts.length > 8 && !showAll && (
+                <Button sx={{textDecoration:'none', color:'black'}} onClick={() => setShowAll(true)}>
+                  Показать еще ({data.facts.length - 8})
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Grid>
         <Grid item size={12}>
-          <Typography variant="h5">Фильмы</Typography>
+          <Typography variant="h5" textAlign="center" mb={4}>Фильмы</Typography>
         </Grid>
       </Grid>
       <Stack>
@@ -115,7 +127,7 @@ export default function ActorDetail() {
               justifyContent="space-between"
             >
               <Typography>{index + 1}</Typography>
-              <Link component={RouterLink} to={`/movie/${film.filmId}`}>
+              <Link sx={{textDecoration:'none', color:'black'}} component={RouterLink} to={`/movie/${film.filmId}`}>
                 {film.nameRu ? film.nameRu : film.nameEn}
               </Link>
               <Typography>{film.rating ? film.rating : '-'}</Typography>

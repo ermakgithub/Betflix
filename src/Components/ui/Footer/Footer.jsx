@@ -11,6 +11,7 @@ export default function Footer() {
                    justifyContent:{sm:'space-between'},
                    alignItems:{sm:'center'},
                    marginTop:'auto',
+                   backgroundColor:'#000000',
 
 
         }}

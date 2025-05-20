@@ -132,6 +132,7 @@ export default function Navbar() {
               <IconButton color="black" onClick={toggleColorMode}>
                 {mode === 'dark' ? <Brightness7/> : <Brightness4/>}
                </IconButton>
+
             </Stack>
           </Toolbar>
         </Container>

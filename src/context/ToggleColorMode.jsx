@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material';
 
 export const ColorModeContext = createContext();
 
-function ToggleColorMode({ children }) {
+function ToggleColorMode( {children} ) {
   const [mode, setMode] = useState('dark');
 
   const theme = createTheme({palette: {mode}});

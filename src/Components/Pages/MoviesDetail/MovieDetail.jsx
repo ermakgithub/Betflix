@@ -154,7 +154,7 @@ export default function MovieDetail() {
             .slice(0, 10)
             .map(({ nameRu, staffId }) => (
               <div key={nameRu}>
-              <Link
+              <Link sx={{textDecoration:'none', color:'black'}}
                 component={RouterLink}
                 to={`/actor/${staffId}`}
 

@@ -1,5 +1,5 @@
 .img {
-
+    width: 370px;
     transition: transform 0.5s ease 0.1s, opacity 0.5s ease 0.1s, border-radius 0.9s ease 0.1s;
     border-radius: 10px;
 }
@@ -7,8 +7,8 @@
 .img:hover {
     opacity: 0.8;
     transform: scale(1.01);
-    border-radius: 15px;
+    border-radius: 20px;
 }
 .opistypograph{
-    margin-top: 100px;
+    margin-top: 120px;
 }
